@@ -2,6 +2,7 @@ package com.bolbas.app.dao;
 
 import java.util.List;
 
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.bolbas.app.model.Message;
