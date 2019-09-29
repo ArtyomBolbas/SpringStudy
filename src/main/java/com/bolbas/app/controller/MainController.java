@@ -4,6 +4,8 @@ import java.util.List;
 
 import java.util.Map;
 
+import javax.swing.text.StyledEditorKit.ItalicAction;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +20,24 @@ public class MainController {
 
 	@Autowired
 	private MessageRepo messageRepo;
-	
-	@PostMapping("/add")
+
+	@GetMapping("/main")
+	public String main(Map<String, Object> model) {
+		Iterable<Message> messages = messageRepo.findAll();
+		model.put("messages", messages);
+		return "main";
+	}
+
+	@GetMapping("/filter")
+	public String getMessgesByTag(@RequestParam String text, Map<String, Object> model) {
+		List<Message> messages = messageRepo.findByTag(text);
+
+		model.put("messages", messages);
+
+		return "main";
+	}
+
+	@PostMapping("/main")
 	public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
 		if (text != null && !text.isEmpty() && tag != null && !tag.isEmpty()) {
 			Message message = new Message(text, tag);
@@ -27,22 +45,8 @@ public class MainController {
 		}
 		Iterable<Message> messages = messageRepo.findAll();
 		model.put("messages", messages);
-		
+
 		return "main";
 	}
-	
-	@GetMapping("/filter")
-	public String getMessgesByTag(@RequestParam String text, Map<String, Object> model) {
-		List<Message> messages = messageRepo.findByTag(text);
-		
-		model.put("messages", messages);
-		
-		return "main";
-	}
-	/*
-	@GetMapping("/")
-	public String getAllMessages() {
-		return "main";
-	}
-	*/
+
 }

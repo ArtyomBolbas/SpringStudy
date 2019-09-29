@@ -8,8 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<%-- 	<p th:text="'Hello, ' + ${name} + '!'" /> --%>
-<h2>Hello</h2>
-	<h2><c:out value="${name}" /></h2>
+	<h2>Hello user</h2>
+	<%-- <h2><c:out value="${name}" /></h2> --%>
+	<c:url value="/main" var="mainURL" />
+	<a href="${mainURL}">Main page</a>
 </body>
 </html>
