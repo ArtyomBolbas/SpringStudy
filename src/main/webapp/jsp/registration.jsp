@@ -9,18 +9,15 @@
 <title>Spring Security Example</title>
 </head>
 <body>
-	<p>Login page</p>
+	<p>Registration page</p>
 
-	<c:if test="${param.error != null}">
-		Invalid user name and password
-	</c:if>
-	<c:if test="${param.logout != null}">
-		You have been logged out
+	<c:if test="${param.message != null} ">
+		<c:out value="${message}"></c:out>
 	</c:if>
 
-	<form:form action="/login" method="post">
+	<form:form action="/registration" method="post">
 		<div>
-			<label> User Name: <input type="text" name="username" />
+			<label> User name: <input type="text" name="username" />
 			</label>
 		</div>
 		<div>
@@ -31,10 +28,6 @@
 			<input type="submit" value="Sign In" />
 		</div>
 	</form:form>
-	
-	<c:url value="/registration" var="registrationURL"/>
-	<p>
-		<a href="${registrationURL}">Add new USER</a>
-	</p>
+
 </body>
 </html>
