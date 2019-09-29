@@ -11,9 +11,7 @@
 <body>
 	<p>Registration page</p>
 
-	<c:if test="${param.message != null} ">
-		<c:out value="${message}"></c:out>
-	</c:if>
+	<c:out value="${message}"></c:out>
 
 	<form:form action="/registration" method="post">
 		<div>

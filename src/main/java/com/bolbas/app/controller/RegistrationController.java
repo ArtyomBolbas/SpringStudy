@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -25,11 +26,14 @@ public class RegistrationController {
 
 	@PostMapping("/registration")
 	public String addUser(User user, Map<String, Object> model) {
-		if(user.getUsername().isEmpty()) {
-			model.put("message", "Field 'user name' is empty!");
+		if (user.getUsername().isEmpty() && user.getPassword().isEmpty()) {
+			model.put("message", "Fields are empty!");
 			return "registration";
-		} else if(user.getPassword().isEmpty()) {
-			model.put("message", "Field 'password' is empty!");
+		} else if (user.getUsername().isEmpty()) {
+			model.put("message", "Field 'User name' is empty!");
+			return "registration";
+		} else if (user.getPassword().isEmpty()) {
+			model.put("message", "Field 'Password' is empty!");
 			return "registration";
 		}
 		User userFromDB = userRepo.findByUsername(user.getUsername());
