@@ -34,6 +34,7 @@
 				<td>${message.getId()}</td>
 				<td>${message.getText()}</td>
 				<td>${message.getTag()}</td>
+				<td>${message.getAuthorName()}</td>
 			</tr>
 		</c:forEach>
 	</table>
