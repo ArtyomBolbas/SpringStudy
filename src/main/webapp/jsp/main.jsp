@@ -13,6 +13,7 @@
 		<form:form action="/logout" method="POST">
 			<input type="submit" value="Sign Out"/>
 		</form:form>
+		<span><a href="/user">User list</a></span>
 	</div>
 	<div>
 		<form:form method="post" action="main">
