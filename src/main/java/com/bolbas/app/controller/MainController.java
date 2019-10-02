@@ -57,6 +57,12 @@ public class MainController {
 
 			if (file != null && !file.getOriginalFilename().isEmpty()) {
 
+				File uploadDir = new File(uploadPath);
+				
+				if(!uploadDir.exists()) {
+					uploadDir.mkdir();
+				}
+				
 				String uuidFile = UUID.randomUUID().toString();
 				String resultFileName = uuidFile + "." + file.getOriginalFilename();
 
