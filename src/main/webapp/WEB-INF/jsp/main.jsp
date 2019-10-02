@@ -6,19 +6,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sweater</title>
+<link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 	<div>
 		<form:form action="/logout" method="POST">
-			<input type="submit" value="Sign Out"/>
+			<input type="submit" value="Sign Out" />
 		</form:form>
 		<span><a href="/user">User list</a></span>
 	</div>
 	<div>
-		<form:form method="post" action="main">
+		<form:form method="post" action="main" enctype="multipart/form-data">
 			<input type="text" name="text" placeholder="Введите сообщение">
 			<input type="text" name="tag" placeholder="Тег">
+			<input type="file" name="file">
 			<button type=submit>Добавить</button>
 		</form:form>
 	</div>
@@ -28,7 +30,9 @@
 			<button type="submit">Найти</button>
 		</form:form>
 	</div>
-	<div><p>Список сообщений</p></div>
+	<div>
+		<p>Список сообщений</p>
+	</div>
 	<table>
 		<c:forEach items="${messages}" var="message">
 			<tr>
@@ -36,6 +40,9 @@
 				<td>${message.getText()}</td>
 				<td>${message.getTag()}</td>
 				<td>${message.getAuthorName()}</td>
+				<td><c:if test="${not empty message.getFilename()}">
+						<img src="/img/${message.getFilename()}">
+					</c:if></td>
 			</tr>
 		</c:forEach>
 	</table>
