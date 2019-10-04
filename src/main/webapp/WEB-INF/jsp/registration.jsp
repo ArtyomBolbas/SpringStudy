@@ -14,28 +14,36 @@
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 		crossorigin="anonymous">
-	<title>Spring Security Example</title>
+	<title>Registration page</title>
 </head>
 <body>
 	<!-- NAVIGATION AREA -->
 	<jsp:include page="/WEB-INF/jsp/template/navigation.jsp"></jsp:include>
 	<!-- --END-- NAVIGATION PAGE -->
 	<div class="container mt-4">
-		<p>Registration page</p>
-	
+		<div class="mb-2">
+			<p>Registration page</p>
+		</div>
 		<c:out value="${message}"></c:out>
 	
 		<form:form action="/registration" method="post">
-			<div>
-				<label> User name: <input type="text" name="username" />
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="inputLogin">User Name:</label>
+				<div class="col-sm-5">
+					<input class="form-control" id="inputLogin" type="text" name="username" placeholder="Login"/>
+				</div>
 			</div>
-			<div>
-				<label> Password: <input type="password" name="password" />
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="inputPassword">Password:</label> 
+				<div class="col-sm-5">
+					<input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password"/>
+				</div>
 			</div>
-			<div>
-				<input type="submit" value="Sign In" />
+			<div class="form-group row">
+				<div class="col"></div>
+				<div class="col">
+					<button type="submit" class="btn btn-primary">Create</button>
+				</div>
 			</div>
 		</form:form>
 	</div>

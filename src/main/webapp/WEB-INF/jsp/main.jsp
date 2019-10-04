@@ -22,42 +22,60 @@
 	<jsp:include page="/WEB-INF/jsp/template/navigation.jsp"></jsp:include>
 	<!-- --END-- NAVIGATION PAGE -->
 	<div class="container mt-4">
-		<div>
-			<form:form action="/logout" method="POST">
-				<input type="submit" value="Sign Out" />
-			</form:form>
+	<!--<div>
 			<span><a href="/user">User list</a></span>
+		</div> -->
+		 <div class="form-row">
+		 	<div class="form-group col-md-6">
+				<form:form class="form-inline" method="get" action="filter">
+					<input class="form-control" type="text" name="text" placeholder="Search by tag">
+					<button class="btn btn-primary ml-2" type="submit">Search</button>
+				</form:form>
+			</div>
 		</div>
-		<div>
-			<form:form method="post" action="main" enctype="multipart/form-data">
-				<input type="text" name="text" placeholder="Введите сообщение">
-				<input type="text" name="tag" placeholder="Тег">
-				<input type="file" name="file">
-				<button type=submit>Добавить</button>
-			</form:form>
-		</div>
-		<div>
-			<form:form method="get" action="filter">
-				<input type="text" name="text">
-				<button type="submit">Найти</button>
-			</form:form>
-		</div>
-		<div>
+		<!-- <div>
 			<p>Список сообщений</p>
+		</div> -->
+		 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    		Add new message
+  		</a>
+		<div class="collapse" id="collapseExample">
+			<div class="form-group mt-3">
+				<form:form method="post" action="main" enctype="multipart/form-data">
+					<div class="form-group">
+						<input class="form-control" type="text" name="text" placeholder="Введите сообщение">
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="tag" placeholder="Тег">
+					</div>
+					<div class="form-group">
+						<div class="custom-file">
+							<input id="customFile" type="file" name="file">
+							<label class="custom-file-label" for="customFile">Choose file</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary" type=submit>Добавить</button>
+					</div>
+				</form:form>
+			</div>
 		</div>
-		<table>
+		<div class="card-columns">
 			<c:forEach items="${messages}" var="message">
-				<tr>
-					<td>${message.getId()}</td>
-					<td>${message.getText()}</td>
-					<td>${message.getTag()}</td>
-					<td>${message.getAuthorName()}</td>
-					<td><c:if test="${not empty message.getFilename()}">
-							<img src="/img/${message.getFilename()}">
-						</c:if></td>
-				</tr>
+				<div class="card my-3">
+					<c:if test="${not empty message.getFilename()}">
+						<img class="card-img-top" src="/img/${message.getFilename()}">
+					</c:if>
+					<div class="m-2">
+						<span>${message.getText()}</span>
+						<i>${message.getTag()}</i>
+					</div>
+					<div class="card-footer text-muted">
+						${message.getAuthorName()}
+					</div>
+				</div>
 			</c:forEach>
-		</table>
+		</div>
 	</div>
 		<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

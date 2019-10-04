@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="/">Sweater</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -30,11 +31,14 @@
 		</ul>
 		<sec:authorize access="isAuthenticated()">
 			<c:if test="${userPrin.isAdmin()}">
-				<div class="navbar-text">Admin</div>
+				<div class="navbar-text mr-3">Admin</div>
 			</c:if>
 			<c:if test="${!userPrin.isAdmin()}">
-				<div class="navbar-text"><%=request.getUserPrincipal().getName().toString()%></div>
+				<div class="navbar-text mr-3"><%=request.getUserPrincipal().getName().toString()%></div>
 			</c:if>
+			<form:form action="/logout" method="POST">
+				<button class="btn btn-primary" type="submit">Sign Out</button>
+			</form:form>
 		</sec:authorize>
 	</div>
 </nav>
